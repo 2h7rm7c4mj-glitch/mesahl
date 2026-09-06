@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشعل الصديق | دورات وورش عمل برمجية</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --accent-color: #2f81f7;
+            --accent-hover: #58a6ff;
+            --text-main: #f0f6fc;
+            --text-sub: #8b949e;
+            --border-color: #30363d;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* الهيدر والبروفايل */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 24px;
+        }
+
+        .avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1f6feb, #238636);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+            margin: 0 auto 16px;
+            border: 2px solid var(--accent-color);
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 6px;
+            color: var(--text-main);
+        }
+
+        .university-tag {
+            display: inline-block;
+            background-color: rgba(47, 129, 247, 0.15);
+            color: var(--accent-hover);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            border: 1px solid rgba(47, 129, 247, 0.3);
+        }
+
+        .bio {
+            color: var(--text-sub);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* الأقسام */
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 28px;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent-hover);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* شبكة الدورات */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .course-card {
+            background-color: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-color);
+        }
+
+        .course-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .course-card p {
+            font-size: 0.88rem;
+            color: var(--text-sub);
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background-color: #238636;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* أزرار التواصل والتسجيل */
+        .cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            display: block;
+            text-align: center;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1f6feb;
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        footer {
+            text-align: center;
+            color: var(--text-sub);
+            font-size: 0.85rem;
+            padding: 10px 0 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- قسم التعريف والجامعة -->
+        <header>
+            <div class="avatar">👨‍💻</div>
+            <h1>مشعل الصديق</h1>
+            <div class="university-tag">🎓 طالب علوم حاسب - جامعة أم القرى</div>
+            <p class="bio">شغوف بنقل المعرفة وتبسيط المفاهيم البرمجية. أقدم دورات وورش عمل تهدف لمساعدة الطلاب والمبتدئين على دخول عالم البرمجة وتطوير المهارات التقنية.</p>
+        </header>
+
+        <!-- قسم الدورات البرمجية -->
+        <div class="section">
+            <h2 class="section-title">📚 الدورات والورش البرمجية</h2>
+            <div class="courses-grid">
+                
+                <div class="course-card">
+                    <span class="badge">قريباً / متاح</span>
+                    <h3>أساسيات البرمجة للمبتدئين</h3>
+                    <p>شرح المفاهيم البرمجية الأساسية وحل المشكلات بأسلوب مبسط وعملي يناسب جميع المستويات.</p>
+                </div>
+
+                <div class="course-card">
+                    <span class="badge">ورشة عمل</span>
+                    <h3>مدخل إلى هيكلة البيانات (Data Structures)</h3>
+                    <p>فهم البنى الأساسية وتنظيم البيانات للتحضير للمواد الجامعية والمقابلات التقنية.</p>
+                </div>
+
+                <div class="course-card">
+                    <span class="badge">دورة تطبيقية</span>
+                    <h3>بناء المشاريع البرمجية واستضافتها</h3>
+                    <p>تعلم كيفية رفع مشاريعك البرمجية واستخدام أدوات التطوير مثل Git و GitHub لإنشاء بورتفوليو احترافي.</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- قسم التسجيل والتواصل -->
+        <div class="section">
+            <h2 class="section-title">📬 للتسجيل والاستفسارات</h2>
+            <div class="cta-container">
+                <a href="mailto:example@email.com" class="btn btn-primary">التواصل لحجز موعد أو التسجيل في دورة</a>
+                <a href="https://github.com" target="_blank" class="btn btn-secondary">حسابي على GitHub</a>
+                <a href="https://linkedin.com" target="_blank" class="btn btn-secondary">حسابي على LinkedIn</a>
+            </div>
+        </div>
+
+        <footer>
+            جميع الحقوق محفوظة © مشعل الصديق - جامعة أم القرى
+        </footer>
+    </div>
+
+</body>
+</html>
