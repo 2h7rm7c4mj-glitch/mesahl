@@ -1,243 +1,779 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>مشعل الصديق | دورات وورش عمل برمجية</title>
+    <title>منصة مِسهال للتقنية والتدريب | Mesahl Tech</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --accent-color: #2f81f7;
-            --accent-hover: #58a6ff;
-            --text-main: #f0f6fc;
-            --text-sub: #8b949e;
-            --border-color: #30363d;
+            --bg-main: #0b0f19;
+            --bg-card: #111827;
+            --bg-card-hover: #1f2937;
+            --accent-primary: #6366f1;
+            --accent-secondary: #06b6d4;
+            --accent-glow: rgba(99, 102, 241, 0.35);
+            --text-main: #f9fafb;
+            --text-sub: #9ca3af;
+            --text-muted: #6b7280;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --radius-lg: 16px;
+            --radius-md: 10px;
+            --font-main: 'Tajawal', sans-serif;
+            --font-code: 'Fira Code', monospace;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
+            background-color: var(--bg-main);
             color: var(--text-main);
+            font-family: var(--font-main);
             line-height: 1.6;
-            padding: 20px 10px;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(99, 102, 241, 0.12) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(6, 182, 212, 0.1) 0%, transparent 45%);
+            background-attachment: fixed;
         }
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-        }
-
-        /* الهيدر والبروفايل */
+        /* Header & Navigation */
         header {
-            text-align: center;
-            padding: 40px 20px;
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            margin-bottom: 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
         }
 
-        .avatar {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #1f6feb, #238636);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 38px;
-            margin: 0 auto 16px;
-            border: 2px solid var(--accent-color);
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            margin-bottom: 6px;
-            color: var(--text-main);
-        }
-
-        .university-tag {
-            display: inline-block;
-            background-color: rgba(47, 129, 247, 0.15);
-            color: var(--accent-hover);
-            padding: 4px 14px;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 16px;
-            border: 1px solid rgba(47, 129, 247, 0.3);
-        }
-
-        .bio {
-            color: var(--text-sub);
-            max-width: 600px;
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
-            font-size: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
         }
 
-        /* الأقسام */
-        .section {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 28px;
-            margin-bottom: 24px;
-            border: 1px solid var(--border-color);
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--accent-hover);
+        .logo {
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-
-        /* شبكة الدورات */
-        .courses-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 16px;
-        }
-
-        .course-card {
-            background-color: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            padding: 20px;
-            border-radius: 12px;
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .course-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-color);
-        }
-
-        .course-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
+            font-size: 1.5rem;
+            font-weight: 800;
             color: var(--text-main);
+            text-decoration: none;
         }
 
-        .course-card p {
-            font-size: 0.88rem;
+        .logo i {
+            color: var(--accent-primary);
+            font-size: 1.8rem;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
             color: var(--text-sub);
-            margin-bottom: 12px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-secondary);
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, var(--accent-primary), #4f46e5);
+            color: #fff;
+            padding: 0.6rem 1.4rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 4px 14px var(--accent-glow);
+            transition: all 0.3s ease;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+        }
+
+        /* Container Section */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 10rem;
+            padding-bottom: 6rem;
+            text-align: center;
+            position: relative;
         }
 
         .badge {
-            display: inline-block;
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 6px;
-            background-color: #238636;
-            color: white;
-            font-weight: bold;
-        }
-
-        /* أزرار التواصل والتسجيل */
-        .cta-container {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .btn {
-            display: block;
-            text-align: center;
-            padding: 14px;
-            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.4rem 1rem;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            color: var(--accent-secondary);
+            font-size: 0.9rem;
             font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
+            margin-bottom: 1.5rem;
         }
 
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: white;
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
         }
 
-        .btn-primary:hover {
-            background-color: #1f6feb;
+        .hero h1 span {
+            background: linear-gradient(135deg, #a5b4fc, var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-sub);
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
         .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.05);
+            background: var(--bg-card);
             color: var(--text-main);
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 700;
             border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background: var(--bg-card-hover);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
-        footer {
+        /* Stats Bar */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.8rem;
+            border-radius: var(--radius-lg);
             text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--accent-secondary);
+            font-family: var(--font-code);
+        }
+
+        .stat-card .label {
             color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Section Titles */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-header p {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Courses Section */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .course-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            background: rgba(234, 179, 8, 0.15);
+            color: #fde047;
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .course-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .course-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .course-desc {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-meta {
+            list-style: none;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .course-meta li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-meta li i {
+            color: var(--accent-secondary);
+        }
+
+        .btn-register {
+            width: 100%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 0.8rem;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .btn-register:hover {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+        }
+
+        /* About & Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .feature-box i {
+            font-size: 2rem;
+            color: var(--accent-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .feature-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-box p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.8rem;
+            border-radius: var(--radius-lg);
+        }
+
+        .stars {
+            color: #f59e0b;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+        }
+
+        .user-info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .user-info span {
+            color: var(--text-muted);
             font-size: 0.85rem;
-            padding: 10px 0 20px;
+        }
+
+        /* FAQ Accordion */
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .faq-answer {
+            margin-top: 0.8rem;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            display: none;
+            border-top: 1px solid var(--border-color);
+            padding-top: 0.8rem;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(6, 182, 212, 0.05));
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-box h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-box p {
+            color: var(--text-sub);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            font-size: 1.3rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            background: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+            section { padding: 4rem 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- قسم التعريف والجامعة -->
-        <header>
-            <div class="avatar">👨‍💻</div>
-            <h1>مشعل الصديق</h1>
-            <div class="university-tag">🎓 طالب علوم حاسب - جامعة أم القرى</div>
-            <p class="bio">شغوف بنقل المعرفة وتبسيط المفاهيم البرمجية. أقدم دورات وورش عمل تهدف لمساعدة الطلاب والمبتدئين على دخول عالم البرمجة وتطوير المهارات التقنية.</p>
-        </header>
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-code"></i>
+                <span>مِسهال للتقنية</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">عن المنصة</a></li>
+                <li><a href="#courses">الدورات والقادمة</a></li>
+                <li><a href="#features">المميزات</a></li>
+                <li><a href="#faq">الأسئلة الشائعة</a></li>
+            </ul>
+            <a href="#contact" class="btn-cta">تواصل معنا</a>
+        </div>
+    </header>
 
-        <!-- قسم الدورات البرمجية -->
-        <div class="section">
-            <h2 class="section-title">📚 الدورات والورش البرمجية</h2>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="badge">
+                <i class="fa-solid fa-rocket"></i> أفق جديد في العلوم البرمجية والتقنية
+            </div>
+            <h1>تعلم البرمجة والأنظمة المدمجة<br><span>بأسلوب تطبيقي واحترافي</span></h1>
+            <p>منصة تعليمية متخصصة في تقديم ورش عمل ودورات نوعية في علوم الحاسب، البرمجة الكائنية، الأردوينو، وأساسيات الأمن السيبراني والأنظمة.</p>
+            <div class="hero-btns">
+                <a href="#courses" class="btn-cta">استكشف الدورات القادمة</a>
+                <a href="#about" class="btn-secondary">تعرف على المنصة</a>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">3+</div>
+                    <div class="label">ورش عمل قادمة</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">100%</div>
+                    <div class="label">تطبيق عملي مباشر</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">24/7</div>
+                    <div class="label">دعم ومتابعة تقنية</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>الدورات وورش العمل القادمة</h2>
+                <p>سجل اهتمامك الآن في ورش العمل البرمجية القادمة لترخيص مقعدك فور فتح التسجيل</p>
+            </div>
+
             <div class="courses-grid">
+
+                <!-- Course 1 -->
+                <div class="course-card">
+                    <div>
+                        <span class="course-badge"><i class="fa-regular fa-clock"></i> تُفتح قريباً</span>
+                        <div class="course-icon">
+                            <i class="fa-brands fa-java"></i>
+                        </div>
+                        <h3 class="course-title">احتقراف Java & OOP</h3>
+                        <p class="course-desc">شرح شامل لمفاهيم البرمجة الكائنية، الوراثة، التجريد، وتصميم واجهات البرمجيات من الصفر حتى التطبيق الشامل.</p>
+                        <ul class="course-meta">
+                            <li><i class="fa-solid fa-check"></i> المستوى: مبتدئ إلى متوسط</li>
+                            <li><i class="fa-solid fa-calendar"></i> الموعد: يُحدد قريباً</li>
+                            <li><i class="fa-solid fa-laptop-code"></i> التطبيق: بيئة NetBeans / JDK</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn-register">تسجيل اهتمام / انضمام للانتظار</a>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-card">
+                    <div>
+                        <span class="course-badge"><i class="fa-regular fa-clock"></i> تُفتح قريباً</span>
+                        <div class="course-icon">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="course-title">مدخل للأردوينو والإنترنت الأشياء</h3>
+                        <p class="course-desc">بناء الدوائر الإلكترونية، التحكم بالحساسات، وربط قطع Arduino مع برمجة Python والرؤية الحاسوبية.</p>
+                        <ul class="course-meta">
+                            <li><i class="fa-solid fa-check"></i> المستوى: جميع المستويات</li>
+                            <li><i class="fa-solid fa-calendar"></i> الموعد: يُحدد قريباً</li>
+                            <li><i class="fa-solid fa-microchip"></i> الأجهزة: Arduino Uno Kit</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn-register">تسجيل اهتمام / انضمام للانتظار</a>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-card">
+                    <div>
+                        <span class="course-badge"><i class="fa-regular fa-clock"></i> تُفتح قريباً</span>
+                        <div class="course-icon">
+                            <i class="fa-solid fa-terminal"></i>
+                        </div>
+                        <h3 class="course-title">أساسيات Linux والأمن السيبراني</h3>
+                        <p class="course-desc">التعامل مع بيئة Ubuntu WSL، أوامر السطر البرمجي Terminal، واستكشاف ثغرات الويب الأساسية.</p>
+                        <ul class="course-meta">
+                            <li><i class="fa-solid fa-check"></i> المستوى: متوسط</li>
+                            <li><i class="fa-solid fa-calendar"></i> الموعد: يُحدد قريباً</li>
+                            <li><i class="fa-solid fa-shield-halved"></i> البيئة: WSL / PortSwigger</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="btn-register">تسجيل اهتمام / انضمام للانتظار</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" style="background: rgba(255,255,255,0.01);">
+        <div class="container">
+            <div class="section-header">
+                <h2>لماذا تتعلم مع مِسهال؟</h2>
+                <p>نهج تعليمي يركز على التطبيق الفعلي ويثري حصيلتك البرمجية بما يتوافق مع المعايير الأكاديمية والمهنية</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-box">
+                    <i class="fa-solid fa-code-merge"></i>
+                    <h3>تطبيق برجمي واقعي</h3>
+                    <p>ابتعاد كامل عن التلقين الجاف، كل حصة تتضمن بناء مشاريع حقيقية يمكنك رفعها على ملفك في GitHub.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <h3>مجموعات وتفاعل مباشر</h3>
+                    <p>ورش العمل مصممة لمجموعات محددة لضمان التفاعل المباشر وإمكانية الإجابة على استفسارات الجميع.</p>
+                </div>
+                <div class="feature-box">
+                    <i class="fa-solid fa-certificate"></i>
+                    <h3>ملخصات وأكواد جاهزة</h3>
+                    <p>الحصول على جميع ملفات الشرح وأكواد التدريب والملفات المرجعية لمراجعتها في أي وقت.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>انطباعات المتدربين والطلاب</h2>
+                <p>آراء بعض المشاركين في الجلسات البرمجية والورش السابقة</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"أسلوب التبسيط لمفاهيم الجافا والبرمجة الكائنية كان استثنائياً، ساعدني كثيراً في فهم المادة وتحسين مستواي."</p>
+                    <div class="user-info">
+                        <h4>طالب علوم حاسب</h4>
+                        <span>تخصص حاسبات وتقنية</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p>"ورشة الأردوينو كانت ممتازة جداً، تطبيق عملي مباشر وسريع وربط ممتع بين الكود والقطع الإلكترونية."</p>
+                    <div class="user-info">
+                        <h4>مهتم بالهندسة والأنظمة</h4>
+                        <span>مشارك في الورشة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>الأسئلة الشائعة</h2>
+                <p>إجابات على أكثر الاستفسارات وروداً حول الورش والدورات</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>كيف يمكنني الانضمام للدورات القادمة؟</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        يمكنك التواصل معنا مباشرة عبر وسائل التواصل المتاحة بالأسفل لتسجيل اسمك في قائمة الانتظار، وسيتم إبلاغك فور فتح باب التسجيل الرسمي.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>هل تحتاج الدورات إلى خبرة برمجية سابقة؟</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        تتدرج الدورات من المستوى المبتدئ إلى المتوسط، حيث نبدأ في كل ورشة بالأساسيات قبل الانتقال للتطبيق Advanced.
+                    </div>
+                </div>
+
+                <div class="faq-item" onclick="toggleFaq(this)">
+                    <div class="faq-question">
+                        <span>هل يتم تقديم الأكواد والمشاريع بعد الورشة؟</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        نعم، جميع المشتركين يحصلون على مستودعات GitHub مخصصة تحتوي على الأكواد المصدريّة والشروحات كاملة.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-box">
+                <h2>جاهز لتطوير مهاراتك البرمجية؟</h2>
+                <p>تواصل معنا الآن للاستفسار عن مواعيد الورش القادمة أو للتسجيل المباشر</p>
                 
-                <div class="course-card">
-                    <span class="badge">قريباً / متاح</span>
-                    <h3>أساسيات البرمجة للمبتدئين</h3>
-                    <p>شرح المفاهيم البرمجية الأساسية وحل المشكلات بأسلوب مبسط وعملي يناسب جميع المستويات.</p>
-                </div>
+                <a href="https://wa.me/" target="_blank" class="btn-cta" style="font-size: 1.1rem; padding: 0.8rem 2rem;">
+                    <i class="fa-brands fa-whatsapp"></i> للتواصل السريع عبر واتساب
+                </a>
 
-                <div class="course-card">
-                    <span class="badge">ورشة عمل</span>
-                    <h3>مدخل إلى هيكلة البيانات (Data Structures)</h3>
-                    <p>فهم البنى الأساسية وتنظيم البيانات للتحضير للمواد الجامعية والمقابلات التقنية.</p>
+                <div class="social-links">
+                    <a href="#" class="social-btn" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="social-btn" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-
-                <div class="course-card">
-                    <span class="badge">دورة تطبيقية</span>
-                    <h3>بناء المشاريع البرمجية واستضافتها</h3>
-                    <p>تعلم كيفية رفع مشاريعك البرمجية واستخدام أدوات التطوير مثل Git و GitHub لإنشاء بورتفوليو احترافي.</p>
-                </div>
-
             </div>
         </div>
+    </section>
 
-        <!-- قسم التسجيل والتواصل -->
-        <div class="section">
-            <h2 class="section-title">📬 للتسجيل والاستفسارات</h2>
-            <div class="cta-container">
-                <a href="mailto:example@email.com" class="btn btn-primary">التواصل لحجز موعد أو التسجيل في دورة</a>
-                <a href="https://github.com" target="_blank" class="btn btn-secondary">حسابي على GitHub</a>
-                <a href="https://linkedin.com" target="_blank" class="btn btn-secondary">حسابي على LinkedIn</a>
-            </div>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>جميع الحقوق محفوظة © 2026 | منصة مِسهال للتقنية والتدريب (Mesahl Tech)</p>
         </div>
+    </footer>
 
-        <footer>
-            جميع الحقوق محفوظة © مشعل الصديق - جامعة أم القرى
-        </footer>
-    </div>
-
+        <script>
+        function toggleFaq(element) {
+            element.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
